@@ -750,6 +750,28 @@ namespace Airline_reservation_system
             Console.WriteLine("Total income as a company: ${0}", totalIncome);
         }
 
+        public static void printAirports(string airportsDb, bool airportsDbExists)
+        {
+            if (!airportsDbExists)
+            {
+                Console.WriteLine("No available serviced airports at the moment");
+                return;
+            }
+            Console.WriteLine("Available serviced airports: ");
+
+            // Read all database
+            string[] airportsData = File.ReadAllLines(airportsDb);
+
+            for (int i = 1; i <= airportsData.Length - 1; i++)
+            {
+                string[] line = airportsData[i].Split(',');
+                Console.Write("{0}\t", line[0]);
+                airportsData[i] = string.Join(",", line);
+
+            }
+            File.WriteAllLines(airportsDb, airportsData);
+        }
+
         //
         //
         // Main function
@@ -850,6 +872,9 @@ namespace Airline_reservation_system
                                 switch (customerOption)
                                 {
                                     case 1:
+                                        printAirports(airportsDb, airportsDbExists);
+                                        Console.WriteLine();
+                                        Console.WriteLine();
                                         // Enter departure airport, return airport and departure date
                                         Console.Write("Enter your departure airport: ");
                                         string depAir = Console.ReadLine();
@@ -1205,6 +1230,7 @@ namespace Airline_reservation_system
                                     case 2:
                                         Console.Write("Enter flight number: ");
                                         flightNumber = Console.ReadLine();
+                                        Console.WriteLine();
                                         string boardingPass = printBoardingPass(username, flightNumber, usersDb);
                                         // If empty
                                         if (boardingPass == "")
@@ -1843,7 +1869,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new flight number: ");
                                                                 string newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
@@ -1871,7 +1897,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new departure city: ");
                                                                 newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
@@ -1899,7 +1925,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new arrival city: ");
                                                                 newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
@@ -1927,7 +1953,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new departure date: ");
                                                                 newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
@@ -1955,7 +1981,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new departure time: ");
                                                                 newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
@@ -1983,7 +2009,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new arrival date: ");
                                                                 newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
@@ -2011,7 +2037,7 @@ namespace Airline_reservation_system
                                                                     break;
                                                                 }
 
-                                                                Console.Write("Enter your new data: ");
+                                                                Console.Write("Enter your new arrival time: ");
                                                                 newData = Console.ReadLine();
                                                                 if (!flightsDbExists)
                                                                 {
