@@ -1,0 +1,17 @@
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/bin/Debug/net7.0/Airline-reservation-system
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/bin/Debug/net7.0/Airline-reservation-system.deps.json
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/bin/Debug/net7.0/Airline-reservation-system.runtimeconfig.json
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/bin/Debug/net7.0/Airline-reservation-system.dll
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/bin/Debug/net7.0/Airline-reservation-system.pdb
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/bin/Debug/net7.0/CsvHelper.dll
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.csproj.AssemblyReference.cache
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.AssemblyInfoInputs.cache
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.AssemblyInfo.cs
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.csproj.CoreCompileInputs.cache
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.csproj.CopyComplete
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.dll
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/refint/Airline-reservation-system.dll
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.pdb
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/Airline-reservation-system.genruntimeconfig.cache
+/Users/aliyaacoub/Developer/repos/Airline-reservation-system/obj/Debug/net7.0/ref/Airline-reservation-system.dll

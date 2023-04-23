@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qk6TYTFihhNgOqgim16llwnqifknvrJqhrUSKAp3nxCRD000juF3r5EDjHAs/5GidJOtNbT7n4klBIF09MlWuA==",
+  "success": true,
+  "projectFilePath": "/Users/aliyaacoub/Developer/repos/Airline-reservation-system/Airline-reservation-system.csproj",
+  "expectedPackageFiles": [
+    "/Users/aliyaacoub/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
