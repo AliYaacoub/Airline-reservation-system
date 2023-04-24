@@ -1892,7 +1892,7 @@ namespace Airline_reservation_system
 
                                                                 if (getFlightAttribute(flightsDb, flightNumber, 0) == null)
                                                                 {
-                                                                    Console.WriteLine("Flight not found1");
+                                                                    Console.WriteLine("Flight not found!");
                                                                     Console.WriteLine();
                                                                     break;
                                                                 }
@@ -1907,7 +1907,66 @@ namespace Airline_reservation_system
                                                                 }
                                                                 else
                                                                 {
-                                                                    editFlightAttribute(flightsDb, flightNumber, newData, editOption - 1);
+                                                                    from = newData;
+                                                                    to = getFlightAttribute(flightsDb, flightNumber, 2);
+                                                                    departureTime = getFlightAttribute(flightsDb, flightNumber, 4);
+                                                                    arrivalTime = getFlightAttribute(flightsDb, flightNumber, 6);
+
+
+                                                                    // If the database does not exist, create it
+                                                                    if (!airportsDbExists)
+                                                                    {
+                                                                        Console.WriteLine("Airports database does not exist!");
+                                                                        break;
+                                                                    }
+                                                                    // If the database exists
+                                                                    else
+                                                                    {
+                                                                        using (StreamReader reader = new StreamReader(airportsDb))
+                                                                        {
+                                                                            string line = "";
+                                                                            while (!reader.EndOfStream)
+                                                                            {
+                                                                                // Parse data line by line
+                                                                                line = reader.ReadLine();
+                                                                                string[] dataFound = line.Split(',');
+                                                                                // If from airport exists, get its latitude and longitude
+                                                                                if (from == dataFound[0])
+                                                                                {
+                                                                                    fromAirportExists = true;
+                                                                                    lat1 = Double.Parse(dataFound[1]);
+                                                                                    lon1 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                                // If to airport exists, get its latitude and longitude
+                                                                                else if (to == dataFound[0])
+                                                                                {
+                                                                                    toAirportExists = true;
+                                                                                    lat2 = Double.Parse(dataFound[1]);
+                                                                                    lon2 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        // Get the distance between from and to airports
+                                                                        distance = calculateDistance(lat1, lon1, lat2, lon2);
+                                                                        // Get eligible discount
+                                                                        discount = calculateDiscount(departureTime, arrivalTime);
+                                                                        // Get price
+                                                                        price = calculateTicketPrice(distance, discount, 1);
+                                                                        Console.WriteLine("Price based on entered information: ${0}", price);
+
+                                                                        points = (int)(price * 10);
+
+                                                                        string priceStr = price.ToString();
+                                                                        string pointsStr = points.ToString();
+                                                                        string distanceStr = distance.ToString();
+
+                                                                        editFlightAttribute(flightsDb, flightNumber, from, 1);
+                                                                        editFlightAttribute(flightsDb, flightNumber, priceStr, 7);
+                                                                        editFlightAttribute(flightsDb, flightNumber, pointsStr, 8);
+                                                                        editFlightAttribute(flightsDb, flightNumber, distanceStr, 12);
+                                                                    }
+
                                                                     Console.WriteLine("Flight edited successfully!");
                                                                     Console.WriteLine();
                                                                 }
@@ -1927,6 +1986,8 @@ namespace Airline_reservation_system
 
                                                                 Console.Write("Enter your new arrival city: ");
                                                                 newData = Console.ReadLine();
+
+
                                                                 if (!flightsDbExists)
                                                                 {
                                                                     Console.WriteLine("Flights database not found!");
@@ -1935,7 +1996,63 @@ namespace Airline_reservation_system
                                                                 }
                                                                 else
                                                                 {
-                                                                    editFlightAttribute(flightsDb, flightNumber, newData, editOption - 1);
+                                                                    to = newData;
+                                                                    from = getFlightAttribute(flightsDb, flightNumber, 1);
+                                                                    departureTime = getFlightAttribute(flightsDb, flightNumber, 4);
+                                                                    arrivalTime = getFlightAttribute(flightsDb, flightNumber, 6);
+
+
+                                                                    // If the database does not exist, create it
+                                                                    if (!airportsDbExists)
+                                                                    {
+                                                                        Console.WriteLine("Airports database does not exist!");
+                                                                        break;
+                                                                    }
+                                                                    // If the database exists
+                                                                    else
+                                                                    {
+                                                                        using (StreamReader reader = new StreamReader(airportsDb))
+                                                                        {
+                                                                            string line = "";
+                                                                            while (!reader.EndOfStream)
+                                                                            {
+                                                                                // Parse data line by line
+                                                                                line = reader.ReadLine();
+                                                                                string[] dataFound = line.Split(',');
+                                                                                // If from airport exists, get its latitude and longitude
+                                                                                if (from == dataFound[0])
+                                                                                {
+                                                                                    lat1 = Double.Parse(dataFound[1]);
+                                                                                    lon1 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                                // If to airport exists, get its latitude and longitude
+                                                                                else if (to == dataFound[0])
+                                                                                {
+                                                                                    lat2 = Double.Parse(dataFound[1]);
+                                                                                    lon2 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        // Get the distance between from and to airports
+                                                                        distance = calculateDistance(lat1, lon1, lat2, lon2);
+                                                                        // Get eligible discount
+                                                                        discount = calculateDiscount(departureTime, arrivalTime);
+                                                                        // Get price
+                                                                        price = calculateTicketPrice(distance, discount, 1);
+                                                                        Console.WriteLine("Price based on entered information: ${0}", price);
+
+                                                                        points = (int)(price * 10);
+
+                                                                        string priceStr = price.ToString();
+                                                                        string pointsStr = points.ToString();
+                                                                        string distanceStr = distance.ToString();
+
+                                                                        editFlightAttribute(flightsDb, flightNumber, to, 2);
+                                                                        editFlightAttribute(flightsDb, flightNumber, priceStr, 7);
+                                                                        editFlightAttribute(flightsDb, flightNumber, pointsStr, 8);
+                                                                        editFlightAttribute(flightsDb, flightNumber, distanceStr, 12);
+                                                                    }
                                                                     Console.WriteLine("Flight edited successfully!");
                                                                     Console.WriteLine();
                                                                 }
@@ -1955,6 +2072,7 @@ namespace Airline_reservation_system
 
                                                                 Console.Write("Enter your new departure date: ");
                                                                 newData = Console.ReadLine();
+
                                                                 if (!flightsDbExists)
                                                                 {
                                                                     Console.WriteLine("Flights database not found!");
@@ -1983,6 +2101,7 @@ namespace Airline_reservation_system
 
                                                                 Console.Write("Enter your new departure time: ");
                                                                 newData = Console.ReadLine();
+
                                                                 if (!flightsDbExists)
                                                                 {
                                                                     Console.WriteLine("Flights database not found!");
@@ -1991,7 +2110,63 @@ namespace Airline_reservation_system
                                                                 }
                                                                 else
                                                                 {
-                                                                    editFlightAttribute(flightsDb, flightNumber, newData, editOption - 1);
+                                                                    departureTime = newData;
+                                                                    arrivalTime = getFlightAttribute(flightsDb, flightNumber, 6);
+                                                                    from = getFlightAttribute(flightsDb, flightNumber, 1);
+                                                                    to = getFlightAttribute(flightsDb, flightNumber, 2);
+
+
+                                                                    // If the database does not exist, create it
+                                                                    if (!airportsDbExists)
+                                                                    {
+                                                                        Console.WriteLine("Airports database does not exist!");
+                                                                        break;
+                                                                    }
+                                                                    // If the database exists
+                                                                    else
+                                                                    {
+                                                                        using (StreamReader reader = new StreamReader(airportsDb))
+                                                                        {
+                                                                            string line = "";
+                                                                            while (!reader.EndOfStream)
+                                                                            {
+                                                                                // Parse data line by line
+                                                                                line = reader.ReadLine();
+                                                                                string[] dataFound = line.Split(',');
+                                                                                // If from airport exists, get its latitude and longitude
+                                                                                if (from == dataFound[0])
+                                                                                {
+                                                                                    lat1 = Double.Parse(dataFound[1]);
+                                                                                    lon1 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                                // If to airport exists, get its latitude and longitude
+                                                                                else if (to == dataFound[0])
+                                                                                {
+                                                                                    lat2 = Double.Parse(dataFound[1]);
+                                                                                    lon2 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        // Get the distance between from and to airports
+                                                                        distance = calculateDistance(lat1, lon1, lat2, lon2);
+                                                                        // Get eligible discount
+                                                                        discount = calculateDiscount(departureTime, arrivalTime);
+                                                                        // Get price
+                                                                        price = calculateTicketPrice(distance, discount, 1);
+                                                                        Console.WriteLine("Price based on entered information: ${0}", price);
+
+                                                                        points = (int)(price * 10);
+
+                                                                        string priceStr = price.ToString();
+                                                                        string pointsStr = points.ToString();
+                                                                        string distanceStr = distance.ToString();
+
+                                                                        editFlightAttribute(flightsDb, flightNumber, departureTime, 4);
+                                                                        editFlightAttribute(flightsDb, flightNumber, priceStr, 7);
+                                                                        editFlightAttribute(flightsDb, flightNumber, pointsStr, 8);
+                                                                        editFlightAttribute(flightsDb, flightNumber, distanceStr, 12);
+                                                                    }
                                                                     Console.WriteLine("Flight edited successfully!");
                                                                     Console.WriteLine();
                                                                 }
@@ -2039,6 +2214,7 @@ namespace Airline_reservation_system
 
                                                                 Console.Write("Enter your new arrival time: ");
                                                                 newData = Console.ReadLine();
+
                                                                 if (!flightsDbExists)
                                                                 {
                                                                     Console.WriteLine("Flights database not found!");
@@ -2047,7 +2223,63 @@ namespace Airline_reservation_system
                                                                 }
                                                                 else
                                                                 {
-                                                                    editFlightAttribute(flightsDb, flightNumber, newData, editOption - 1);
+                                                                    arrivalTime = newData;
+                                                                    departureTime = getFlightAttribute(flightsDb, flightNumber, 4);
+                                                                    from = getFlightAttribute(flightsDb, flightNumber, 1);
+                                                                    to = getFlightAttribute(flightsDb, flightNumber, 2);
+
+
+                                                                    // If the database does not exist, create it
+                                                                    if (!airportsDbExists)
+                                                                    {
+                                                                        Console.WriteLine("Airports database does not exist!");
+                                                                        break;
+                                                                    }
+                                                                    // If the database exists
+                                                                    else
+                                                                    {
+                                                                        using (StreamReader reader = new StreamReader(airportsDb))
+                                                                        {
+                                                                            string line = "";
+                                                                            while (!reader.EndOfStream)
+                                                                            {
+                                                                                // Parse data line by line
+                                                                                line = reader.ReadLine();
+                                                                                string[] dataFound = line.Split(',');
+                                                                                // If from airport exists, get its latitude and longitude
+                                                                                if (from == dataFound[0])
+                                                                                {
+                                                                                    lat1 = Double.Parse(dataFound[1]);
+                                                                                    lon1 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                                // If to airport exists, get its latitude and longitude
+                                                                                else if (to == dataFound[0])
+                                                                                {
+                                                                                    lat2 = Double.Parse(dataFound[1]);
+                                                                                    lon2 = Double.Parse(dataFound[2]);
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                        // Get the distance between from and to airports
+                                                                        distance = calculateDistance(lat1, lon1, lat2, lon2);
+                                                                        // Get eligible discount
+                                                                        discount = calculateDiscount(departureTime, arrivalTime);
+                                                                        // Get price
+                                                                        price = calculateTicketPrice(distance, discount, 1);
+                                                                        Console.WriteLine("Price based on entered information: ${0}", price);
+
+                                                                        points = (int)(price * 10);
+
+                                                                        string priceStr = price.ToString();
+                                                                        string pointsStr = points.ToString();
+                                                                        string distanceStr = distance.ToString();
+
+                                                                        editFlightAttribute(flightsDb, flightNumber, arrivalTime, 6);
+                                                                        editFlightAttribute(flightsDb, flightNumber, priceStr, 7);
+                                                                        editFlightAttribute(flightsDb, flightNumber, pointsStr, 8);
+                                                                        editFlightAttribute(flightsDb, flightNumber, distanceStr, 12);
+                                                                    }
                                                                     Console.WriteLine("Flight edited successfully!");
                                                                     Console.WriteLine();
                                                                 }
