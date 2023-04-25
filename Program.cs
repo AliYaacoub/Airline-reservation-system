@@ -976,17 +976,16 @@ namespace Airline_reservation_system
                                                                 // If valid
                                                                 if (IsValidCreditCard(cardNumber))
                                                                 {
-                                                                    using (StreamWriter writer = new StreamWriter(usersDb, true))
-                                                                    {
-                                                                        // Book flight chosen
-                                                                        bookFlight(username, name, usersDb, flights[flightToBookInt - 1] + pointsOrCard, flightNumber, flightsDb);
-                                                                        string availableCapacity = getFlightAttribute(flightsDb, flightNumber, 11);
-                                                                        int availableCapacityInt = int.Parse(availableCapacity);
-                                                                        // Update the available capacity of the plane
-                                                                        availableCapacityInt--;
-                                                                        availableCapacity = availableCapacityInt.ToString();
-                                                                        editFlightAttribute(flightsDb, flightNumber, availableCapacity, 11);
-                                                                    }
+
+                                                                    // Book flight chosen
+                                                                    bookFlight(username, name, usersDb, flights[flightToBookInt - 1] + pointsOrCard, flightNumber, flightsDb);
+                                                                    string availableCapacity = getFlightAttribute(flightsDb, flightNumber, 11);
+                                                                    int availableCapacityInt = int.Parse(availableCapacity);
+                                                                    // Update the available capacity of the plane
+                                                                    availableCapacityInt--;
+                                                                    availableCapacity = availableCapacityInt.ToString();
+                                                                    editFlightAttribute(flightsDb, flightNumber, availableCapacity, 11);
+
                                                                     // Update user's points balance
                                                                     changeCustomerPoints(username, usersDb, pointsToEarn, "+");
                                                                     Console.WriteLine("Flight booked successfully!");
@@ -1013,15 +1012,14 @@ namespace Airline_reservation_system
                                                             {
                                                                 // If yes, update points
                                                                 changeCustomerPoints(username, usersDb, pointsToEarn, "-");
-                                                                using (StreamWriter writer = new StreamWriter(usersDb, true))
-                                                                {
-                                                                    bookFlight(username, name, usersDb, flights[flightToBookInt - 1] + pointsOrCard, flightNumber, flightsDb);
-                                                                    string availableCapacity = getFlightAttribute(flightsDb, flightNumber, 11);
-                                                                    int availableCapacityInt = int.Parse(availableCapacity);
-                                                                    availableCapacityInt--;
-                                                                    availableCapacity = availableCapacityInt.ToString();
-                                                                    editFlightAttribute(flightsDb, flightNumber, availableCapacity, 11);
-                                                                }
+
+                                                                bookFlight(username, name, usersDb, flights[flightToBookInt - 1] + pointsOrCard, flightNumber, flightsDb);
+                                                                string availableCapacity = getFlightAttribute(flightsDb, flightNumber, 11);
+                                                                int availableCapacityInt = int.Parse(availableCapacity);
+                                                                availableCapacityInt--;
+                                                                availableCapacity = availableCapacityInt.ToString();
+                                                                editFlightAttribute(flightsDb, flightNumber, availableCapacity, 11);
+
                                                                 Console.WriteLine("Flight booked successfully!");
                                                                 transactionComplete = true;
                                                                 Console.WriteLine();
@@ -1126,25 +1124,23 @@ namespace Airline_reservation_system
 
                                                                     if (IsValidCreditCard(cardNumber))
                                                                     {
-                                                                        using (StreamWriter writer = new StreamWriter(usersDb, true))
-                                                                        {
-                                                                            // Book departing flight
-                                                                            bookFlight(username, name, usersDb, flightsDep[flightDepToBookInt - 1] + pointsOrCard, flightDepNumber, flightsDb);
-                                                                            string availableCapacity = getFlightAttribute(flightsDb, flightDepNumber, 11);
-                                                                            int availableCapacityInt = int.Parse(availableCapacity);
-                                                                            availableCapacityInt--;
-                                                                            availableCapacity = availableCapacityInt.ToString();
-                                                                            editFlightAttribute(flightsDb, flightDepNumber, availableCapacity, 11);
+                                                                        // Book departing flight
+                                                                        bookFlight(username, name, usersDb, flightsDep[flightDepToBookInt - 1] + pointsOrCard, flightDepNumber, flightsDb);
+                                                                        string availableCapacity = getFlightAttribute(flightsDb, flightDepNumber, 11);
+                                                                        int availableCapacityInt = int.Parse(availableCapacity);
+                                                                        availableCapacityInt--;
+                                                                        availableCapacity = availableCapacityInt.ToString();
+                                                                        editFlightAttribute(flightsDb, flightDepNumber, availableCapacity, 11);
 
-                                                                            // book returning flight
-                                                                            bookFlight(username, name, usersDb, flightsRet[flightRetToBookInt - 1] + pointsOrCard, flightRetNumber, flightsDb);
-                                                                            availableCapacity = getFlightAttribute(flightsDb, flightRetNumber, 11);
-                                                                            availableCapacityInt = int.Parse(availableCapacity);
-                                                                            availableCapacityInt--;
-                                                                            availableCapacity = availableCapacityInt.ToString();
-                                                                            editFlightAttribute(flightsDb, flightRetNumber, availableCapacity, 11);
+                                                                        // book returning flight
+                                                                        bookFlight(username, name, usersDb, flightsRet[flightRetToBookInt - 1] + pointsOrCard, flightRetNumber, flightsDb);
+                                                                        availableCapacity = getFlightAttribute(flightsDb, flightRetNumber, 11);
+                                                                        availableCapacityInt = int.Parse(availableCapacity);
+                                                                        availableCapacityInt--;
+                                                                        availableCapacity = availableCapacityInt.ToString();
+                                                                        editFlightAttribute(flightsDb, flightRetNumber, availableCapacity, 11);
 
-                                                                        }
+
                                                                         // Update points
                                                                         changeCustomerPoints(username, usersDb, totalPoints, "+");
                                                                         Console.WriteLine("Flights {0} and {1} booked successfully!", flightDepNumber, flightRetNumber);
@@ -1171,24 +1167,23 @@ namespace Airline_reservation_system
                                                                 if (availablePointsInt >= pointsToEarnInt)
                                                                 {
                                                                     changeCustomerPoints(username, usersDb, totalPoints, "-");
-                                                                    using (StreamWriter writer = new StreamWriter(usersDb, true))
-                                                                    {
-                                                                        // Book departing flights
-                                                                        bookFlight(username, name, usersDb, flightsDep[flightDepToBookInt - 1] + pointsOrCard, flightDepNumber, flightsDb);
-                                                                        string availableCapacity = getFlightAttribute(flightsDb, flightDepNumber, 11);
-                                                                        int availableCapacityInt = int.Parse(availableCapacity);
-                                                                        availableCapacityInt--;
-                                                                        availableCapacity = availableCapacityInt.ToString();
-                                                                        editFlightAttribute(flightsDb, flightDepNumber, availableCapacity, 11);
 
-                                                                        // Book returning flights
-                                                                        bookFlight(username, name, usersDb, flightsRet[flightDepToBookInt - 1] + pointsOrCard, flightRetNumber, flightsDb);
-                                                                        availableCapacity = getFlightAttribute(flightsDb, flightRetNumber, 11);
-                                                                        availableCapacityInt = int.Parse(availableCapacity);
-                                                                        availableCapacityInt--;
-                                                                        availableCapacity = availableCapacityInt.ToString();
-                                                                        editFlightAttribute(flightsDb, flightRetNumber, availableCapacity, 11);
-                                                                    }
+                                                                    // Book departing flights
+                                                                    bookFlight(username, name, usersDb, flightsDep[flightDepToBookInt - 1] + pointsOrCard, flightDepNumber, flightsDb);
+                                                                    string availableCapacity = getFlightAttribute(flightsDb, flightDepNumber, 11);
+                                                                    int availableCapacityInt = int.Parse(availableCapacity);
+                                                                    availableCapacityInt--;
+                                                                    availableCapacity = availableCapacityInt.ToString();
+                                                                    editFlightAttribute(flightsDb, flightDepNumber, availableCapacity, 11);
+
+                                                                    // Book returning flights
+                                                                    bookFlight(username, name, usersDb, flightsRet[flightDepToBookInt - 1] + pointsOrCard, flightRetNumber, flightsDb);
+                                                                    availableCapacity = getFlightAttribute(flightsDb, flightRetNumber, 11);
+                                                                    availableCapacityInt = int.Parse(availableCapacity);
+                                                                    availableCapacityInt--;
+                                                                    availableCapacity = availableCapacityInt.ToString();
+                                                                    editFlightAttribute(flightsDb, flightRetNumber, availableCapacity, 11);
+
                                                                     Console.WriteLine("Flights {0} and {1} booked successfully!", flightDepNumber, flightRetNumber);
                                                                     transactionComplete = true;
                                                                     Console.WriteLine();
