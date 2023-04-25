@@ -1836,6 +1836,7 @@ namespace Airline_reservation_system
                                                             writer.WriteLine("Flight Number,From,To,Departure Date,Departure Time,Arrival Date,Arrival Time,Price ($),Points to be Earned,Aircraft,Aircraft Capacity,Available Seats,Distance (miles),Travelers");
                                                         }
                                                         writer.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13}", flight1.flightNumber, flight1.departureCity, flight1.arrivalCity, flight1.departureDate, flight1.departureTime, flight1.arrivalDate, flight1.arrivalTime, flight1.price, points, flight1.aircraft, flight1.aircraftCapacity, flight1.availableSeats, flight1.distance, "0"));
+                                                        writer.Flush();
                                                     }
                                                     Console.WriteLine("Flight {0} added successfully!", flightNumber);
 
