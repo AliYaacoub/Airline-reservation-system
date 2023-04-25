@@ -673,7 +673,7 @@ namespace Airline_reservation_system
         public static string getFlightNumber(string flightsDetails)
         {
             string flightNumber = flightsDetails.Replace(" ", string.Empty);
-            return flightNumber.Substring(0, Math.Min(5, flightNumber.Length));
+            return flightNumber.Substring(0, Math.Min(6, flightNumber.Length));
         }
 
         // Print boarding pass
