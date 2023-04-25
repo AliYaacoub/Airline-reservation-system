@@ -299,6 +299,7 @@ namespace Airline_reservation_system
         public static void printAllManifests(string flightsDb)
         {
             // Read all database
+            bool oneFlightBooked = false;
             string[] flightsData = File.ReadAllLines(flightsDb);
 
             for (int i = 1; i <= flightsData.Length - 1; i++)
@@ -314,7 +315,13 @@ namespace Airline_reservation_system
                 for (int j = 0; j <= travelers.Length - 1; j++)
                 {
                     Console.WriteLine("{0}", travelers[j]);
+                    oneFlightBooked = true;
                 }
+                Console.WriteLine();
+            }
+            if (oneFlightBooked == false)
+            {
+                Console.WriteLine("No available manifest to print since no one booked a flight!");
                 Console.WriteLine();
             }
         }
