@@ -744,7 +744,7 @@ namespace Airline_reservation_system
                 {
                     totalFlights++;
                     flightPrice = int.Parse(line[7]);
-                    capacityPer = ((aircraftCapacity - availableSeats) / aircraftCapacity) * 100;
+                    capacityPer = Math.Round(((aircraftCapacity - availableSeats) / aircraftCapacity) * 100, 2);
                     nbOfTravelers = Convert.ToInt32(aircraftCapacity - availableSeats);
                     incomePerFlight = nbOfTravelers * flightPrice;
                     totalIncome += incomePerFlight;
@@ -1464,7 +1464,7 @@ namespace Airline_reservation_system
                             }
                             writer.WriteLine(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}", customer1.fullName, customer1.address, customer1.phone, customer1.birthday, customer1.creditCard, customer1.username, customer1.password, "0", "0", "0", "0"));
                         }
-                        Console.WriteLine("Account created successfully.");
+                        Console.WriteLine("Account created successfully!");
                         Console.WriteLine();
                         break;
 
@@ -2611,6 +2611,7 @@ namespace Airline_reservation_system
                                         writer.WriteLine(string.Format("{0},{1},{2},{3},{4},{5}", admin1.fullName, admin1.address, admin1.phone, admin1.birthday, admin1.username, admin1.password));
                                     }
                                     Console.WriteLine();
+                                    Console.WriteLine("Account created successfully!");
                                     break;
 
                                 case 0:
